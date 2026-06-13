@@ -14,6 +14,26 @@
   .theme {
     --font-heading: var(--font-sans);
     --font-sans: var(--font-sans);
+    :root {
+      /* Premium palette */
+      --color-bg: #0A0F1C;               /* Dark navy */
+      --color-card: #111827;            /* Card background */
+      --color-primary: #00D4FF;         /* Cyan */
+      --color-secondary: #7C3AED;       /* Purple */
+      --color-error: #EF4444;           /* Red */
+      --glass-bg: rgba(17,24,39,0.6);   /* Frosted glass */
+      --glass-border: rgba(255,255,255,0.1);
+      /* Compatibility variables */
+      --background: var(--color-bg);
+      --foreground: #FFFFFF;
+      --card: var(--color-card);
+      --card-foreground: #FFFFFF;
+      --primary: var(--color-primary);
+      --primary-foreground: #FFFFFF;
+      --secondary: var(--color-secondary);
+      --secondary-foreground: #FFFFFF;
+      --border: var(--glass-border);
+    }
   }
   :root {
     --background: oklch(1 0 0);
@@ -91,6 +111,25 @@
   html {
     @apply font-sans;
   }
+}
+/* Reusable glassmorphism utility */
+.glass {
+  @apply bg-[rgba(17,24,39,0.6)] backdrop-blur-md rounded-xl border border-[rgba(255,255,255,0.1)];
+}
+
+/* Cyan glow */
+.glow-cyan {
+  box-shadow: 0 0 8px rgba(0,212,255,0.6);
+}
+
+/* Purple glow */
+.glow-purple {
+  box-shadow: 0 0 8px rgba(124,58,237,0.6);
+}
+
+/* Gradient border utility */
+.gradient-border {
+  @apply border border-transparent bg-gradient-to-br from-cyan-500 to-purple-500 p-0.5 rounded-xl overflow-hidden;
 }
 
 /* Cinematic UI Utilities */

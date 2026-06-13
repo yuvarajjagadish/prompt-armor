@@ -2,6 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { MotionWrapper } from '@/components/motion/MotionWrapper';
+import { MotionButton } from '@/components/motion/MotionButton';
+import { fadeUp } from '@/components/motion/variants';
+import CredibilityMetrics from '@/components/hero/CredibilityMetrics';
+import ProductPreview from '@/components/hero/ProductPreview';
 import { ScannerConsole } from '@/components/scanner/ScannerConsole';
 import { MetricsDisplay } from '@/components/scanner/MetricsDisplay';
 import { FindingsPanel } from '@/components/scanner/FindingsPanel';
@@ -207,37 +213,54 @@ export default function PromptScannerPage() {
       <main className="flex-1 flex flex-col w-full relative z-10">
         
         {/* A. HERO SECTION */}
-        <section className="py-20 md:py-28 flex flex-col items-center text-center px-6 max-w-4xl mx-auto relative z-10">
-          <div className="flex items-center gap-2 bg-cyan-950/20 border border-cyan-500/25 px-3.5 py-1 rounded-full text-[10px] font-mono text-cyan-400 uppercase tracking-widest mb-6 animate-pulse shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-            ENTERPRISE RED TEAM PLATFORM // SECURED ACTIVE SHIELD
-          </div>
+        <MotionWrapper>
+  <section className="py-6 md:py-8 flex flex-col lg:flex-row items-center text-center lg:text-left px-6 max-w-7xl mx-auto relative z-10 gap-4">
+    {/* Left text block */}
+    <div className="flex-1">
+      <motion.div variants={fadeUp} initial="hidden" animate="visible" className="flex items-center gap-2 bg-cyan-950/20 border border-cyan-500/25 px-3.5 py-1 rounded-full text-[10px] font-mono text-cyan-400 uppercase tracking-widest mb-4 animate-pulse shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+        ENTERPRISE RED TEAM PLATFORM // SECURED ACTIVE SHIELD
+      </motion.div>
 
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase leading-[1.1] font-sans">
-            AI Red Teaming <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Platform</span>
-          </h2>
-          
-          <p className="text-sm sm:text-base text-zinc-400 font-sans max-w-2xl leading-relaxed mt-6">
-            Test LLM applications against prompt injection, jailbreaks, system prompt leaks, agent abuse, and RAG attacks.
-          </p>
+      <motion.h2 variants={fadeUp} initial="hidden" animate="visible" className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white uppercase leading-[1.1] font-sans">
+        AI Red Teaming <br />
+        <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          Platform
+        </span>
+      </motion.h2>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center w-full sm:w-auto font-mono">
-            <button 
-              onClick={scrollToScanner}
-              className="bg-cyan-950 border border-cyan-500/40 hover:bg-cyan-900/80 hover:border-cyan-400 text-cyan-200 shadow-[0_0_25px_rgba(6,182,212,0.25)] h-11 px-8 rounded-lg text-xs tracking-widest uppercase font-semibold transition-all duration-300 active:scale-95"
-            >
-              Start Security Scan
-            </button>
-            <button 
-              onClick={() => setIsDemoModalOpen(true)}
-              className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white h-11 px-8 rounded-lg text-xs tracking-widest uppercase font-semibold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2"
-            >
-              <Play className="w-3.5 h-3.5 fill-current" />
-              Watch Demo
-            </button>
-          </div>
-        </section>
+      <motion.p variants={fadeUp} initial="hidden" animate="visible" className="text-sm sm:text-base text-zinc-400 font-sans max-w-2xl leading-relaxed mt-4">
+        Test LLM applications against prompt injection, jailbreaks, system prompt leaks, agent abuse, and RAG attacks.
+      </motion.p>
+
+      <div className="flex flex-col sm:flex-row gap-3 mt-6 justify-center lg:justify-start w-full sm:w-auto font-mono">
+        <MotionButton
+          onClick={scrollToScanner}
+          className="bg-cyan-950 border border-cyan-500/40 hover:bg-cyan-900/80 hover:border-cyan-400 text-cyan-200 shadow-[0_0_25px_rgba(6,182,212,0.25)] h-10 px-6 rounded-lg text-xs tracking-widest uppercase font-semibold transition-all duration-300 active:scale-95"
+        >
+          Start Security Scan
+        </MotionButton>
+        <MotionButton
+          onClick={() => setIsDemoModalOpen(true)}
+          className="bg-zinc-950 hover:bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white h-10 px-6 rounded-lg text-xs tracking-widest uppercase font-semibold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2"
+        >
+          <Play className="w-3.5 h-3.5 fill-current" />
+          Watch Demo
+        </MotionButton>
+      </div>
+
+      {/* Credibility metrics directly below CTA */}
+      <CredibilityMetrics />
+    </div>
+
+    {/* Right product preview */}
+    <div className="flex-1 w-full max-w-md">
+      <div className="gradient-border rounded-xl overflow-hidden">
+        <ProductPreview />
+      </div>
+    </div>
+  </section>
+</MotionWrapper>
 
         {/* B. ENTERPRISE TRUST LOGOS */}
         <div className="w-full border-y border-zinc-900/60 bg-[#050816]/30 backdrop-blur-sm py-8 relative z-10 select-none">
